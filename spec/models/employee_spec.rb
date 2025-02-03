@@ -5,23 +5,23 @@ RSpec.describe Employee, type: :model do
   let(:manager) { create(:employee, company: company, manager: nil) }
   let(:employee) { build(:employee, company: company, manager: manager) }
 
-  it "é válido com nome, email e empresa" do
+  it "is valid with name, email, and company" do
     expect(employee).to be_valid
     employee.save!
     expect(employee.persisted?).to be true
   end
 
-  it "é inválido sem nome" do
+  it "is invalid without a name" do
     invalid_employee = build(:employee, name: nil, company: company, manager: manager)
     expect(invalid_employee).not_to be_valid
   end
 
-  it "é inválido sem email" do
+  it "is invalid without an email" do
     invalid_employee = build(:employee, email: nil, company: company, manager: manager)
     expect(invalid_employee).not_to be_valid
   end
 
-  it "impede loops na hierarquia (um gestor não pode ser liderado por seu próprio subordinado)" do
+  it "prevents hierarchy loops (a manager cannot be led by their own subordinate)" do
     employee.save!
     subordinate = create(:employee, company: company, manager: employee)
     employee.manager = subordinate
