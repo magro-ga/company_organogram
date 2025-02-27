@@ -20,5 +20,5 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'database_cleaner'
-  gem 'graphiql-rails', '~> 1.7'
+  gem 'graphiql-rails', '~> 1.10'
 end
